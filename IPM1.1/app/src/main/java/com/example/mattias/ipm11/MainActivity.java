@@ -15,18 +15,22 @@ public class MainActivity extends TabActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         tabHost = getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
-        //Tab1
+
+        //Skapa och lägg till Tab 1
         intent = new Intent(this, Tab1.class);
         spec = tabHost.newTabSpec("First").setIndicator("First").setContent(intent);
         tabHost.addTab(spec);
 
-        //Tab2
+        //Skapa och lägg till Tab 2
         intent = new Intent(this, Tab2.class);
         spec = tabHost.newTabSpec("Second").setIndicator("Second").setContent(intent);
         tabHost.addTab(spec);
+
+
 
     }
 

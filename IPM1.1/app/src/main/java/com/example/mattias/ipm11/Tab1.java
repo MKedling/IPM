@@ -2,8 +2,6 @@ package com.example.mattias.ipm11;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,8 +16,10 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
+
 /**
- * Created by mattias on 2015-03-04.
+ * Klass som skapar en aktivitet med olika komponeter för att träna på de olika komponenterna.
+ * @author mattias kedling
  */
 public class Tab1 extends Activity implements AdapterView.OnItemSelectedListener {
 
@@ -29,11 +29,10 @@ public class Tab1 extends Activity implements AdapterView.OnItemSelectedListener
     private int weight, birthdayYear, birthdayMonth, birthdayDay;
     private SeekBar weightSeekbar;
 
-
     public void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tab1layout);
+        setContentView(R.layout.tab1_layout);
 
         nameInput = (TextView) findViewById(R.id.input_name);
         buttonSubmit = (Button) findViewById(R.id.button_submit);
@@ -41,7 +40,7 @@ public class Tab1 extends Activity implements AdapterView.OnItemSelectedListener
         weightSeekbar = (SeekBar) findViewById(R.id.weight_seekbar);
         weightOutput = (TextView) findViewById(R.id.text_weight);
 
-           weight = 50;
+        weight = 50; // sätter startvärde
         //Button listener som sätter texten i output
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

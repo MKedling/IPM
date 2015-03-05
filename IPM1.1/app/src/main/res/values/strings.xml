@@ -7,11 +7,12 @@
     <string name="button_text">Klar!</string>
     <string name="radio_man">Man</string>
     <string name="radio_woman">Kvinna</string>
+    <string name="button_start_progress_text">Starta Progress</string>
+
     <string-array name="spinner_array">
         <item>Röd</item>
         <item>Svart</item>
         <item>Blå</item>
     </string-array>
-
 
 </resources>

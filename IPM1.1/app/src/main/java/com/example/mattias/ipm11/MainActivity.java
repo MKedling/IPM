@@ -30,10 +30,6 @@ public class MainActivity extends TabActivity {
         spec = tabHost.newTabSpec("Second").setIndicator("Second").setContent(intent);
         tabHost.addTab(spec);
 
-
-
     }
-
-
 
 }

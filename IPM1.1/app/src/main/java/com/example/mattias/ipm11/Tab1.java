@@ -2,6 +2,8 @@ package com.example.mattias.ipm11;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 
 import java.util.Calendar;
 
@@ -85,7 +88,6 @@ public class Tab1 extends Activity implements AdapterView.OnItemSelectedListener
         //Actionlistener för när ett item från spinnern väljs
         spinner.setOnItemSelectedListener(this);
 
-
     }
 
     //Metod som anropas på en checkbox klickas.
@@ -124,7 +126,6 @@ public class Tab1 extends Activity implements AdapterView.OnItemSelectedListener
                 }, birthdayYear, birthdayMonth, birthdayDay);
         datePicker.show();
     }
-
     //2 OnItemSelectedListener metoder
     // Metod som anropas då ett element väljs. Uppdaterar variablen colors värde.
     @Override
@@ -136,6 +137,5 @@ public class Tab1 extends Activity implements AdapterView.OnItemSelectedListener
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
 
 }

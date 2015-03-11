@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <EditText
+        android:id="@+id/input_email_address"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ange mottagare"
+        android:layout_margin="5dp"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/input_subject"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ange ämne"
+        android:layout_margin="5dp"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/input_message"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:hint="Ange meddelande"
+        android:inputType="text"
+        android:layout_margin="5dp"
+        android:gravity="top|left"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lägg till bild"
+        android:id="@+id/button_attatch" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skicka"
+        android:layout_margin="5dp"
+        android:id="@+id/button_send" />
+
+
+</LinearLayout>

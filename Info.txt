@@ -1,1 +1,2 @@
 5.1 Skriver ut cords från Location som inte bör användas säger google? Står i uup att all locationdata skall skrivas ut ?
+4.2.3 Fungerar inte getInputStream() blockerar, kolla koden

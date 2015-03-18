@@ -34,6 +34,8 @@ public class MainActivity extends Activity {
             tw.append("\nLat: " + location.getLatitude() + "\nLong: " + location.getLongitude()
                        + "\nAcc: " +location.getAccuracy() + "\n Speed: " +location.getSpeed() );
 
+            
+
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {

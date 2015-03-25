@@ -29,34 +29,8 @@ public class DBConnection {
 		}
 		
 	}
-	
-	/**
-	 * Metod f�r att h�mta alla personer i databasen
-	 * @return Str�ng som inneh�ller alla personer. 
-	 */
-	protected String getAllPersons(){
-		
-		Statement stat;
-		String resstr = "Gästbok: \n\n";
-		try {
-			stat = dbConnection.createStatement();
-			ResultSet res = stat.executeQuery("select * from Personer");
-			while(res.next()){
-				resstr +=("Namn: " + res.getString("Namn") + "\n");
-				resstr +=("Epost: " + res.getString("Epost") + "\n");
-				resstr +=("Hemsida: " + res.getString("Hemsida") + "\n");
-				resstr +=("Komentar: " + res.getString("Kommentar") + "\n\n");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return resstr;
-		
-	}
-	
 
-    protected void insertPicture(int konto, byte[] array){
+    protected boolean insertPicture(int konto, byte[] array){
 
         try {
             String sql = "INSERT INTO Bild(Konto, Bild) VALUES(?, ?)";
@@ -68,8 +42,9 @@ public class DBConnection {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-
+        return true;
     }
 
     protected byte[] getPicture(){

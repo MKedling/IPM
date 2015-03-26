@@ -6,8 +6,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.sql.PreparedStatement;
 
 public class DBConnection {
@@ -30,14 +28,22 @@ public class DBConnection {
 		
 	}
 
-    protected boolean insertPicture(int konto, byte[] array){
+    /**
+     * Metod för att lägga tille ny användare i dartabasen
+     * @param username önskat användarnamn som string.
+     * @param password önskat lösenord som string
+     * @param array användarens bild som byte []
+     * @return true vid lyckad insättning, annars false.
+     */
+    protected boolean insertNewUser(String username, String password, byte[] array){
 
         try {
-            String sql = "INSERT INTO Bild(Konto, Bild) VALUES(?, ?)";
+            String sql = "INSERT INTO User(Username, Password, Image) VALUES(?, ?, ?)";
             PreparedStatement statement = dbConnection.prepareStatement(sql);
 
-            statement.setInt(1, konto);
-            statement.setBinaryStream(2,new ByteArrayInputStream(array),array.length); // lägger till bild, dvsa col 2 värde
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.setBinaryStream(3,new ByteArrayInputStream(array),array.length); // lägger till bild, dvsa col 2 värde
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -47,15 +53,52 @@ public class DBConnection {
         return true;
     }
 
-    protected byte[] getPicture(){
+    /**
+     * Metod för att försöka logga in, dvsa kolla ifall användarnamn och password är korrekt
+     * @param username String som är användarnamn
+     * @param password String som är lösenord
+     * @return true ifall användarnamn och lösen matchade, annars false
+     */
+    protected boolean userLogin(String username, String password){
 
         try {
-            Statement stmt = dbConnection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM Bild");
-            resultSet.next();
-            byte[] bytes = resultSet.getBytes("Bild");
+            String sql = "SELECT * FROM User WHERE Username = ? AND Password = ?";
+            PreparedStatement statement = dbConnection.prepareStatement(sql);
 
-            return bytes;
+            statement.setString(1, username);
+            statement.setString(2, password);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if(resultSet.next()){
+                return true;
+            }
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    /**
+     * Metod som hämtar bilde i form av byte arr från databas
+     * @param username användarnamtet som bilden tillhör
+     * @return returnerar byte arrayen vid succsess eller null vid fail
+     */
+    protected byte[] getPicture(String username){
+
+        try {
+            String sql = ("SELECT Image FROM User WHERE Username = ?");
+            PreparedStatement statement = dbConnection.prepareStatement(sql);
+            statement.setString(1, username);
+
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                byte[] bytes = resultSet.getBytes(1);
+                return bytes;
+            }
 
         }catch(Exception e){
             e.printStackTrace();

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Inloggad"
+        android:id="@+id/textView"
+        android:layout_marginTop="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/button_chat"
+        android:layout_alignStart="@+id/button_chat" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:id="@+id/user_image"
+        android:src="@android:color/black"
+        android:layout_marginRight="42dp"
+        android:layout_marginEnd="42dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Username"
+        android:id="@+id/text_view_uname"
+        android:layout_marginTop="66dp"
+        android:editable = "true"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Chatta"
+        android:id="@+id/button_chat"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/user_image"
+        android:layout_alignRight="@+id/user_image"
+        android:layout_alignEnd="@+id/user_image" />
+
+
+
+
+</RelativeLayout>

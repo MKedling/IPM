@@ -13,6 +13,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+
 // Klass som ansluter till en server. Tar emot och skickar meddelanden till servern.
 
 public class MainActivity extends Activity {

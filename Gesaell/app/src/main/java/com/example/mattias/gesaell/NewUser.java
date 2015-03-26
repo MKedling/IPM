@@ -1,6 +1,5 @@
 package com.example.mattias.gesaell;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,6 +7,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -21,8 +21,10 @@ public class NewUser extends Activity {
     private Button buttonTakePicture, buttonCreateUser;
     private ImageView imageView;
     private final int REQUEST_IMAGE_CAPTURE =112; // Int som är svarskod till onActivityResult
-    private PictureObject pictureObject;
-    private static int dummieId = 1;
+    private UserObject userObject;
+    private EditText inputUsername, inputPassword;
+    private Bitmap userImage;
+    private String username, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,27 +33,31 @@ public class NewUser extends Activity {
         buttonTakePicture = (Button)findViewById(R.id.button_add_picture);
         buttonCreateUser = (Button)findViewById(R.id.button_create_user);
         imageView = (ImageView)findViewById(R.id.image_view);
-        pictureObject = new PictureObject(imageView);
+        inputUsername = (EditText)findViewById(R.id.input_username);
+        inputPassword = (EditText)findViewById(R.id.input_password);
 
-        //Lyssnare som skapar en ny intent för att ta en bild. sedan sparar onActivityResult den i databasen.
+        //Lyssnare som skapar en ny intent för att ta en bild som sparas i en lokal variabel.
         buttonTakePicture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); // Skapa intent för att ta bild.
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) { // kollar att intenten är genomförbar
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE); // Startar en  intent för att ta en bild och returnera den.
                 }
+
             }
         });
 
+        //Lyssnare som anropar metod som lägger till användare i databasen
         buttonCreateUser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                pictureObject.showPicture();
+                if(addUserDataToDB()){ // kollar ifall tillägget lyckades.
+                    setContentView(R.layout.activity_main);
+                }
             }
         });
 
     }
 
-    
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
@@ -59,15 +65,9 @@ public class NewUser extends Activity {
             if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && null != data) {
 
                 Bundle extras = data.getExtras(); // Hämta datan som intentet returnerade
-                Bitmap imageBitmap = (Bitmap) extras.get("data"); // Gör det till en Bitmap
+                userImage = (Bitmap) extras.get("data"); // Gör det till en Bitmap
 
-                imageView.setImageBitmap(imageBitmap); // Visa bilden i imageView
-                if(pictureObject.addPicture(dummieId++, imageBitmap)) { // Lägg till bilden i databasen
-                    Toast.makeText(this, "Bild tillagd i databas", Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(this, "Bild kunde inte läggas till", Toast.LENGTH_LONG).show();
-                }
-
+                imageView.setImageBitmap(userImage); // Visa bilden i imageView
 
             } else {
                 Toast.makeText(this, "Ingen bild tagen", Toast.LENGTH_LONG).show();
@@ -77,6 +77,29 @@ public class NewUser extends Activity {
             Toast.makeText(this, "Någonting gick fel", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    /**
+     * Metod som skapar ett UserObject och sedan anropar metod hos det som lägger till anv i databasen.
+     * @return true vid lyckat tilläggande, annars false.
+     */
+    protected boolean addUserDataToDB(){
+
+        username = inputUsername.getText().toString();
+        password = inputPassword.getText().toString();
+
+        if(username != null && password != null && userImage != null) { // Kolla att ingen variabel är null
+            userObject = new UserObject(imageView, username, password, userImage); // Skapa nytt user objekt
+
+            if (userObject.addUserToDB()) { // Lägg usern i databasen
+                Toast.makeText(this, "Användare tillagd i databas", Toast.LENGTH_LONG).show();
+                return true;
+            } else {
+                Toast.makeText(this, "Användare kunde inte läggas till", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        return false;
     }
 
 

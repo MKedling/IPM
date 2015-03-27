@@ -23,6 +23,9 @@
         <activity android:label="NewUser" android:name=".NewUser"/>
         <activity android:label="UserLogin" android:name=".UserLogin"/>
         <activity android:label="UserChat" android:name=".UserChat"/>
+
+        <activity android:label="Game" android:name=".Game" android:screenOrientation="landscape"/>
+
     </application>
 
 </manifest>

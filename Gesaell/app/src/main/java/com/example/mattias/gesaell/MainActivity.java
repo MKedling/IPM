@@ -51,6 +51,22 @@ public class MainActivity extends Activity {
             }
         });
 
+
+
+
+        Button startGame = (Button)findViewById(R.id.button_start_game);
+        startGame.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, Game.class); // skapa ny aktivitet
+                MainActivity.this.startActivity(myIntent);
+
+            }
+        });
+
+
+
+
+
     }
 
 

@@ -5,6 +5,17 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/spacelogo"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +56,7 @@
         android:text="Skapa användaren"
         android:layout_marginLeft="20dp"
         android:id="@+id/button_create_user" />
+
 
 
 </LinearLayout>

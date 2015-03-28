@@ -117,7 +117,7 @@ public class UserChat extends Activity {
         //Metoden som körs i UI tråden och uppdaterar chatfönstret.
         protected void onProgressUpdate(String... progress) {
             super.onProgressUpdate(progress);
-            chatWindow.append("\nInc:  " + progress[0]);
+            chatWindow.append("\n - " + progress[0]);
         }
 
         // Metod som sänder en string till servern, skickar även med username och location.

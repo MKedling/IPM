@@ -78,6 +78,15 @@ public class UserLogin extends Activity {
             }
         });
 
+        Button startGame = (Button)findViewById(R.id.button_start_game);
+        startGame.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(UserLogin.this, Game.class); // skapa ny aktivitet
+                UserLogin.this.startActivity(myIntent);
+
+            }
+        });
+
     }
 
 

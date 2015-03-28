@@ -3,27 +3,37 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/spacelogo"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="35dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Inloggad"
         android:id="@+id/textView"
-        android:layout_marginTop="42dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/imageView"
         android:layout_alignLeft="@+id/button_chat"
-        android:layout_alignStart="@+id/button_chat" />
+        android:layout_alignStart="@+id/button_chat"/>
 
     <ImageView
         android:layout_width="100dp"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:id="@+id/user_image"
         android:src="@android:color/black"
         android:layout_marginRight="42dp"
         android:layout_marginEnd="42dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,20 +44,28 @@
         android:layout_marginTop="66dp"
         android:editable = "true"
         android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        android:layout_alignLeft="@+id/textView"/>
 
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Chatta"
         android:id="@+id/button_chat"
-        android:layout_marginTop="54dp"
         android:layout_below="@+id/user_image"
         android:layout_alignRight="@+id/user_image"
-        android:layout_alignEnd="@+id/user_image" />
+        android:layout_alignEnd="@+id/user_image"
+        android:layout_marginTop="37dp"
+        android:layout_gravity="center_horizontal"/>
 
-
-
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Starta spel"
+        android:id="@+id/button_start_game"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/button_chat"
+        android:layout_alignRight="@+id/user_image"
+        android:layout_alignEnd="@+id/user_image"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

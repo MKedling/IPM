@@ -46,7 +46,6 @@ public class UserObject {
         this.userName = userName;
         this.userPassword = userPassword;
 
-        //Sätt bilden ??
     }
 
 

@@ -8,10 +8,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 /**
  * Klass som fösöker logga in en användare.
@@ -23,25 +21,21 @@ public class UserLogin extends Activity {
     private String user = "usr_14607937";
     private String password = "607937";
 
-    Button buttonChat;
-    DBConnection dbc;
-    String username;
-    String userPassword;
-    ImageView userImage;
-    Bitmap bitmap;
-
-
+    private Button buttonChat;
+    private DBConnection dbc;
+    private String username;
+    private String userPassword;
+    private ImageView userImage;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent myIntent = getIntent();
-        username = myIntent.getStringExtra("USERNAME");
+        username = myIntent.getStringExtra("USERNAME"); // Lägger till användarnamn som extra till intent
         userPassword = myIntent.getStringExtra("PASSWORD");
 
-
-        //Log.d("USERNAME FROM INTENT", username);
 
         UserTestLogin utl = new UserTestLogin();
         try {
@@ -57,6 +51,9 @@ public class UserLogin extends Activity {
 
     }
 
+    /**
+     * Metod som anropas då en login lyckas.
+     */
     private void loginSuccess(){
 
         setContentView(R.layout.user_loggedin);

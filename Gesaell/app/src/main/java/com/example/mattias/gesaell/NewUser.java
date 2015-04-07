@@ -36,7 +36,7 @@ public class NewUser extends Activity {
         inputUsername = (EditText)findViewById(R.id.input_username);
         inputPassword = (EditText)findViewById(R.id.input_password);
 
-        //Lyssnare som skapar en ny intent för att ta en bild som sparas i en lokal variabel.
+        //Lyssnare som skapar en ny intent för att ta en bild som sparas i en variabel.
         buttonTakePicture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); // Skapa intent för att ta bild.

@@ -10,7 +10,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,7 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Klass som implementerar en chat där användaren kan sända och mottaga meddelanden
+ * Klass som implementerar en chat där användaren kan sända och motta meddelanden
  * Användarens användarnamn och location skickas med i meddelanden.
  */
 public class UserChat extends Activity {
@@ -41,19 +40,17 @@ public class UserChat extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        Log.d("OnCreate", "NUNUNU");
-
         Intent myIntent = getIntent();
         username = myIntent.getStringExtra("USERNAME"); // hämtar username
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener); // Lyssnar efter location uppdateringar
 
         Button buttonSendMsg = (Button) findViewById(R.id.button_send_message);
         chatWindow = (TextView) findViewById(R.id.textView);
         final TextView input = (TextView) findViewById(R.id.editText);
 
-        serverConnectionThread = new ConnectionToServer(); // Instansierar async tråd klassen som använde för att skicka och mottaga meddelanden.
+        serverConnectionThread = new ConnectionToServer(); // Instansierar async tråd klassen som används för att skicka och mottaga meddelanden.
         serverConnectionThread.execute(); // startar lyssnandet efter meddelanden
 
         // Lyssnare som anropar sendMsg i async thread klassen för att skicka meddelande till servern.
@@ -68,7 +65,7 @@ public class UserChat extends Activity {
 
 
     /**
-     * Location listener som taremot kordinater och sparar dem för att sedan avregistrera sig från uppdateringar.
+     * Location listener som tar emot kordinater och sparar dem för att sedan avregistrera sig från uppdateringar.
      */
     LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
@@ -83,7 +80,7 @@ public class UserChat extends Activity {
     };
 
 
-    // Innre klass som körs i bakgrunden och hanterar anslutningen till servern.
+    // Innre klass som körs i bakgrunden och hanterar anslutningen till chatservern.
     private class ConnectionToServer extends AsyncTask<Void, String, Void> {
 
         private Socket socket;

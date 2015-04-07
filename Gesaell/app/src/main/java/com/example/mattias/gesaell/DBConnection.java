@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.PreparedStatement;
+
+/**
+ * Klass som hanterar connection till databas.
+ */
 
 public class DBConnection {
 	
@@ -29,10 +32,10 @@ public class DBConnection {
 	}
 
     /**
-     * Metod för att lägga tille ny användare i dartabasen
-     * @param username önskat användarnamn som string.
-     * @param password önskat lösenord som string
-     * @param array användarens bild som byte []
+     * Metod för att lägga till en ny användare i databasen
+     * @param username önskat användarnamn som String.
+     * @param password önskat lösenord som String
+     * @param array användarens bild som byte[]
      * @return true vid lyckad insättning, annars false.
      */
     protected boolean insertNewUser(String username, String password, byte[] array){
@@ -41,8 +44,8 @@ public class DBConnection {
             String sql = "INSERT INTO User(Username, Password, Image) VALUES(?, ?, ?)";
             PreparedStatement statement = dbConnection.prepareStatement(sql);
 
-            statement.setString(1, username);
-            statement.setString(2, password);
+            statement.setString(1, username); // Lägger till användarnamnet
+            statement.setString(2, password); // Lägger till lösenordet
             statement.setBinaryStream(3,new ByteArrayInputStream(array),array.length); // lägger till bild, dvsa col 2 värde
             statement.executeUpdate();
 
@@ -70,10 +73,9 @@ public class DBConnection {
 
             ResultSet resultSet = statement.executeQuery();
 
-            if(resultSet.next()){
+            if(resultSet.next()){ // Kollar ifall queryn returnerade något.
                 return true;
             }
-
 
         }catch(Exception e){
             e.printStackTrace();
@@ -83,7 +85,7 @@ public class DBConnection {
     }
 
     /**
-     * Metod som hämtar bilde i form av byte arr från databas
+     * Metod som hämtar bilden i form av byte[] från databas
      * @param username användarnamtet som bilden tillhör
      * @return returnerar byte arrayen vid succsess eller null vid fail
      */
